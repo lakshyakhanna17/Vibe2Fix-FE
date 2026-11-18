@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bg-primary text-text-primary antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Universal reset for grey wireframe borders: switch all element borders to transparent */
+  *, ::before, ::after {
+    border-color: transparent !important;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0F0F10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #232326;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2E2E33;
+}
+
+/* Progressive smooth blur gradient mask (No sharp cutoffs, pure frosted glass without dark discoloration) */
+.fading-scroll-blur {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.8) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.8) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+/* Reusable tactile 3D pop-out tab & button styles (borderless pure drop shadow) */
+@layer components {
+  .tab-3d {
+    @apply relative bg-gradient-to-b from-[#262629] to-[#18181A] font-semibold text-text-secondary transition-all duration-150 select-none;
+    box-shadow: 0 3px 0 0 #000000, 0 4px 10px rgba(0, 0, 0, 0.45);
+    transform: translateY(-2px);
+  }
+
+  .tab-3d:hover {
+    @apply text-white from-[#323236] to-[#1F1F23];
+    box-shadow: 0 4px 0 0 #000000, 0 6px 14px rgba(0, 0, 0, 0.55);
+    transform: translateY(-3px);
+  }
+
+  .tab-3d:active {
+    box-shadow: 0 1px 0 0 #000000, 0 2px 4px rgba(0, 0, 0, 0.3);
+    transform: translateY(1px);
+  }
+
+  .tab-3d-active {
+    @apply text-black bg-gradient-to-b from-white to-[#EAEAEA] font-bold;
+    box-shadow: 0 3px 0 0 #000000;
+    transform: translateY(-2px);
+  }
+
+  /* 3D Tactile Button (Zero white glow, pure crisp physical pop) */
+  .btn-3d {
+    @apply relative bg-gradient-to-b from-neutral-100 to-neutral-300 text-black font-bold transition-all duration-150 select-none;
+    box-shadow: 0 3px 0 0 #000000;
+    transform: translateY(-2px);
+  }
+
+  .btn-3d:hover {
+    @apply bg-gradient-to-b from-white to-neutral-200;
+    box-shadow: 0 4px 0 0 #000000;
+    transform: translateY(-3px);
+  }
+
+  .btn-3d:active {
+    box-shadow: 0 1px 0 0 #000000, 0 2px 4px rgba(0, 0, 0, 0.4);
+    transform: translateY(1px);
+  }
+
+  /* Secondary dark 3D button */
+  .btn-3d-dark {
+    @apply relative bg-gradient-to-b from-[#27272A] to-[#18181A] text-text-primary font-semibold transition-all duration-150 select-none;
+    box-shadow: 0 3px 0 0 #000000, 0 4px 8px rgba(0, 0, 0, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .btn-3d-dark:hover {
+    @apply text-white from-[#343438] to-[#1E1E22];
+    box-shadow: 0 4px 0 0 #000000, 0 6px 12px rgba(0, 0, 0, 0.45);
+    transform: translateY(-2px);
+  }
+
+  .btn-3d-dark:active {
+    box-shadow: 0 1px 0 0 #000000;
+    transform: translateY(1px);
+  }
+}
+
+/* Absolute Global Border Elimination: Overrides any and all utility borders across the entire DOM */
+*, ::before, ::after {
+  border-color: transparent !important;
+}
+
+/* Retain only spinning ring indicator for loader */
+.animate-spin,
+.loading-spinner {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  border-top-color: #ffffff !important;
+}
